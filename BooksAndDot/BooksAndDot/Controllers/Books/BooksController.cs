@@ -34,7 +34,8 @@ namespace BooksAndDot.Controllers.Books
                 .ToListAsync();
             */
             BookServices bs = new BookServices(_context);
-            return await bs.ListBooks();
+            var result = await bs.ListBooks();
+            return Ok(result.Value);
         }
 
         // GET: api/Books/5
@@ -54,7 +55,7 @@ namespace BooksAndDot.Controllers.Books
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize]        
         public async Task<IActionResult> PutBook(int id, Book book) {
             if (id != book.Id) {
                 return BadRequest();
@@ -84,7 +85,7 @@ namespace BooksAndDot.Controllers.Books
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<Book>> PostBook(Book book)
         {
             /*_context.Books.Add(book);
